@@ -1,0 +1,26 @@
+<html>
+<body>
+<div id="main">
+  <div id="one" class="main" >
+    <h1>Battito Infinito World Tour</h1>
+    <table>
+  <tr *ngFor="let k of koncerti">
+    <input hidden="hidden" [value]="k._id">
+    <td><b><p>{{k._datum|date}}</p></b></td>
+    <td><p class="textcolor">{{k._nazivKoncerta}}</p></td>
+    <td><p class="textcolor">{{k._grad}}</p></td>
+    <td><p class="textcolor">{{k._lokacija}}</p></td>
+   <td></td>
+
+
+  </tr>
+
+    </table>
+
+  </div>
+  <div id="two" class="main" >
+    </div>
+</div>
+
+</body>
+</html>

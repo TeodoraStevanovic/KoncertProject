@@ -1,0 +1,70 @@
+#main{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main
+{
+  text-align: center;
+ min-height: 1000px;
+
+}
+#one
+{
+  color: whitesmoke;
+  background-color: rgba(0, 0, 0, 0.96);
+  float: left;
+  width:60%;
+  text-align: center;
+  padding: 30px 10px 10px 10px;
+}
+
+#two
+{
+  background-image:url("../../assets/background/s1.jpg");
+  background-color: #ffffff; /* Used if the image is unavailable */
+  width: 40%;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  background-attachment: fixed;
+  position: sticky;
+  float: left;
+}
+#one h1{
+  font-size: 3vw;
+  font-family: "Goudy Old Style", serif;
+  font-style: italic;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+#one h1:hover{
+color: #a19999;
+}
+
+
+td{
+  font-size: 1.2vw;
+  height: 50px;
+  border-bottom: 1px solid #ddd;
+  padding-left: 10px;
+
+}
+tr{
+  background-color: rgba(0, 0, 0, 0.57);
+  border-bottom: 1px solid #ddd;
+
+}
+table{
+  margin-top: 75px;
+  color:whitesmoke ;
+  width: 65%;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+}
+.textcolor{color: #c4c4c4
+}
+
+

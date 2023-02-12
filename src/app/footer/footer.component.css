@@ -1,0 +1,40 @@
+
+footer {
+  background-image:url("../../assets/background/e0f8561dd07cf1ef7b56de49ea89a31a.jpg");
+  color: white;
+  bottom: 0;
+  width: 100%;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  background-attachment: fixed;
+  font-size: 16px;
+position: static;
+margin-bottom: -52px;
+}
+
+ .copyright {
+  text-align:center;
+  padding-top:24px;
+  opacity:0.4;
+  font-size:1.5vw;
+  margin-bottom:0;
+   padding-bottom: 10px;
+}
+#social {
+  display: flex;
+  justify-content: center;
+}
+.img{
+  height: 2.5vw;
+  margin-left: 10px;
+  margin-right: 10px;
+  background: #ffffff;
+  border-radius: 20%;
+}
+#naslov{
+  display: flex;
+  justify-content: center;
+  font-family: "Courier New";
+  font-size: 2.5vw;
+}
