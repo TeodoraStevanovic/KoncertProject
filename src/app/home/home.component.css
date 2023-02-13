@@ -35,6 +35,7 @@
 #one h1{
   font-size: 3vw;
   font-family: "Goudy Old Style", serif;
+
   font-style: italic;
   font-weight: bold;
   text-transform: uppercase;
@@ -46,7 +47,7 @@ color: #a19999;
 
 td{
   font-size: 1.2vw;
-  height: 50px;
+  height: 80px;
   border-bottom: 1px solid #ddd;
   padding-left: 10px;
 
@@ -57,9 +58,9 @@ tr{
 
 }
 table{
-  margin-top: 75px;
+  argin-top: 75px;
   color:whitesmoke ;
-  width: 65%;
+  width: 75%;
   border-collapse: collapse;
   margin-left: auto;
   margin-right: auto;
@@ -67,4 +68,12 @@ table{
 .textcolor{color: #c4c4c4
 }
 
+#linkZaRezervaciju{
+  font-size: 1.1vw;
+  color: orangered;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-align: center;
+  font-family: "Goudy Old Style", serif;
 
+}

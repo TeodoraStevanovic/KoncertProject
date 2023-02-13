@@ -58,9 +58,9 @@ header ul li a{
   color:#fff;
   text-transform: full-size-kana;
   padding: 10px 15px;
-  font-family:  "Times New Roman";
+  font-family: "Nova Square";
 
 }
 header ul li a:hover{
-  color: rgba(16, 241, 151, 0.32);
+  color: orangered;
 }

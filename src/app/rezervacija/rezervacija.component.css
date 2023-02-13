@@ -1,0 +1,25 @@
+#glavni{
+  text-align: center;
+  min-height: 1800px;
+  background-color: rgba(0, 0, 0, 0.56);
+  padding: 20px 100px ;
+  background-image:url("../../assets/background/s3b.jpg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  background-attachment: fixed;
+  position: sticky;
+}
+
+#unutrasnji{
+  margin: 20px;
+  background-color: white;
+  min-height: 1700px;
+  padding: 75px;
+color:#262626;
+  border: 3px orangered solid;
+}
+#naslov{
+  font-size:4.5vw;
+  font-family: "Nova Square";
+}

@@ -7,7 +7,9 @@ import {RouterModule} from "@angular/router";
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
-import { ProbaComponent } from './proba/proba.component';
+import { RezervacijaComponent } from './rezervacija/rezervacija.component';
+import { BiografijaComponent } from './biografija/biografija.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import { ProbaComponent } from './proba/proba.component';
     FooterComponent,
     HomeComponent,
     HeaderComponent,
-    ProbaComponent
+    RezervacijaComponent,
+    BiografijaComponent
   ],
     imports: [
         BrowserModule,
         RouterModule,
-        AppRoutingModule
+        AppRoutingModule,
+      HttpClientModule
     ],
   providers: [],
   bootstrap: [AppComponent]

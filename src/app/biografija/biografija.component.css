@@ -1,0 +1,45 @@
+#glavni{
+  text-align: center;
+  min-height: 1500px;
+  background-color: rgba(0, 0, 0, 0.56);
+  padding: 20px 100px ;
+  background-image:url("../../assets/background/s1.jpg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  background-attachment: fixed;
+  position: sticky;
+}
+
+#unutrasnji{
+  margin: 20px;
+  background-color: #262626;
+  min-height: 1400px;
+padding: 150px;
+
+}
+p{
+  color: white;
+font-size: 2vw;
+}
+#naslov{
+  color: whitesmoke; font-size:5vw;
+  font-family: "Nova Square";
+}
+#naslov:hover{
+  font-style: oblique;
+
+}
+
+#slike{
+  display: flex;
+  justify-content: center;
+}
+#slike img{
+  height: 24vw;
+  width: 24vw;
+  margin-left: 10px;
+  margin-right: 10px;
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}

@@ -1,15 +1,20 @@
 <html>
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nova+Square" />
 <body>
 <div id="main">
   <div id="one" class="main" >
     <h1>Battito Infinito World Tour</h1>
     <table>
   <tr *ngFor="let k of koncerti">
-    <input hidden="hidden" [value]="k._id">
+ <!--   <input hidden="hidden" [value]="k._id"> -->
     <td><b><p>{{k._datum|date}}</p></b></td>
     <td><p class="textcolor">{{k._nazivKoncerta}}</p></td>
     <td><p class="textcolor">{{k._grad}}</p></td>
     <td><p class="textcolor">{{k._lokacija}}</p></td>
+   <td> <button type="button" class="btn btn-outline-dark btn-lg"> <a id= "linkZaRezervaciju"[routerLink]="['/reservation', k._id]">
+     Rezerviši karte </a></button>
+
+     </td>
    <td></td>
 
 
