@@ -7,14 +7,14 @@
     <table>
   <tr *ngFor="let k of koncerti">
  <!--   <input hidden="hidden" [value]="k._id"> -->
-    <td><b><p>{{k._datum|date}}</p></b></td>
-    <td><p class="textcolor">{{k._nazivKoncerta}}</p></td>
-    <td><p class="textcolor">{{k._grad}}</p></td>
-    <td><p class="textcolor">{{k._lokacija}}</p></td>
-   <td> <button type="button" class="btn btn-outline-dark btn-lg"> <a id= "linkZaRezervaciju"[routerLink]="['/reservation', k._id]">
-     Rezerviši karte </a></button>
+    <td><b><p>{{k.datum|date}}</p></b></td>
+    <td><p class="textcolor">{{k.naziv}}</p></td>
+    <td><p class="textcolor">{{k.grad}}</p></td>
+    <td><p class="textcolor">{{k.lokacija}}</p></td>
+   <td>
+     <button id= "linkZaRezervaciju"type="button" class="btn btn-outline-dark btn-lg" (click)="openPageForReservation(k.idkoncert)"> Rezerviši karte </button>
+</td>
 
-     </td>
    <td></td>
 
 

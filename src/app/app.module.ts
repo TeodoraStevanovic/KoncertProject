@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { RezervacijaComponent } from './rezervacija/rezervacija.component';
 import { BiografijaComponent } from './biografija/biografija.component';
 import {HttpClientModule} from "@angular/common/http";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {HttpClientModule} from "@angular/common/http";
         BrowserModule,
         RouterModule,
         AppRoutingModule,
-      HttpClientModule
+        HttpClientModule,
+        FormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

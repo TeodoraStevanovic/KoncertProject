@@ -15,11 +15,49 @@
   margin: 20px;
   background-color: white;
   min-height: 1700px;
-  padding: 75px;
+  padding: 75px 50px;
 color:#262626;
   border: 3px orangered solid;
 }
 #naslov{
   font-size:4.5vw;
   font-family: "Nova Square";
+}
+
+#kupac, #promoKod,#zonaIkarte{
+  padding-left: 1vw;
+  text-align: left;
+  border: 5px solid #f6f5f5;
+}
+label,option,select,p{
+  font-size: 1vw;
+  font-family: "Nova Square";
+}
+#dugme,#dugme2{
+  font-family: "Nova Square";
+  font-size: 1.5vw;
+  font-weight: bold;
+  color: orangered;
+  background-color: #f6f5f5;
+
+}
+#dugme2{
+  margin-right: 16%;
+}
+#poruka{
+  margin:  5px 0px;
+  color: #262626;
+  font-size: 1.3vw;
+  font-family: "Nova Square";
+  border: 5px solid #f6f5f5;
+
+
+}
+#poruka p{
+ padding-left: 25%;
+  padding-top:1% ;
+}
+#zonaIkarte{
+  padding-top: 1vw;
+
 }

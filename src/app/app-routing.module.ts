@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'reservation', component: RezervacijaComponent },
 
-  { path: 'reservation/:concertId', component: RezervacijaComponent },
+  { path: 'reservation', component: RezervacijaComponent },
   { path: 'biografija', component: BiografijaComponent }
 
   //{ path: 'footer', component: FooterComponent },

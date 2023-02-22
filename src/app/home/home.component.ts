@@ -1,6 +1,7 @@
-
 import {Component, HostListener, OnInit} from '@angular/core';
-import {Koncert} from "../koncert.model";
+import {KoncertService} from "../koncert.service";
+import {Router} from "@angular/router";
+import {Koncert} from "../model/koncert.model";
 
 
 @Component({
@@ -9,8 +10,8 @@ import {Koncert} from "../koncert.model";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-
+  koncerti: Koncert[]=[];
+/*
   koncert1:Koncert= new Koncert(1 ,(new Date(2023, 6, 12)),"Beograd","Stark Arena"," Last Battle ","");
   koncert2:Koncert= new Koncert(2 ,(new Date(2023, 2, 18)),"Milano","Duomo","Nothing like home","");
   koncert3:Koncert= new Koncert(3 ,(new Date(2023, 3, 14)),"Barcelona","Torre Glores","Sagrada musica","");
@@ -21,11 +22,28 @@ export class HomeComponent implements OnInit {
 
    koncerti = [this.koncert1,this.koncert2,this.koncert3,this.koncert4,
      this.koncert5,this.koncert6,this.koncert7];
-
-  constructor() { }
+*/
+  constructor( private koncertService:KoncertService,
+               private router : Router) { }
 
   ngOnInit(): void {
+    this.refreshKoncerte();
+
+
   }
 
 
+  private refreshKoncerte() {
+    this.koncertService.retrieveAllKoncerte().subscribe(
+      response => {
+        console.log(response);
+        this.koncerti = response;
+      }
+    )
+  }
+
+  openPageForReservation(id: number) {
+    console.log(`rezervisi ${id}`)
+    this.router.navigate(['reservation'],{queryParams:{id:id}})
+  }
 }
