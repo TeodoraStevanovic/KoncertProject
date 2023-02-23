@@ -1,83 +1,241 @@
-<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nova+Square" />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="//fonts.googleapis.com/css?family=Nova+Square"
+/>
 <div id="glavni">
-<div id="unutrasnji">
-    <h1 id="naslov" ><b>Rezervišite svoje karte</b></h1>
-  <br>
-  <form #RezForm="ngForm" (ngSubmit)="MakeRezervation(RezForm)">
+  <div id="unutrasnji">
+    <h1 id="naslov"><b>Rezervišite svoje karte</b></h1>
+    <br />
 
-    <div id="zonaIkarte" style="text-align: left" *ngIf="poruka=='nepoznato'">
-<div class="row" >
-    <label class="col-2">Odaberite zonu:</label>
-    <select class="form-control mb-4 col-8"  [(ngModel)]="selectedZona" [ngModelOptions]="{standalone: true}">
-      <option *ngFor="let zona of zone"
-              value="{{zona.idzona}}" >{{zona.naziv +", cena jedne karte u ovoj zoni je:"}}{{zona.cena +" din"}}</option></select></div>
-      <div class="row justify-content-around">
-<div class="col-6">
-  <div class="row"  >
-        <label class="col-5">Odaberite broj karti u ovoj zoni:</label>
-        <input type="number" name="brojKarata" [ngModel]="brojKarti" #box (keyup)="onKey(box.value)" class=" form-control mb-5 col-6" />
-    <!--    -->
-</div>  </div>
-        <button  type="button" class="btn form-control btn-sm btn-outline-dark col-4 " id="dugme2" (click)="AddCardsToRezervation()"  >Dodaj karte</button>
+    <form #RezForm="ngForm" (ngSubmit)="MakeRezervation(RezForm)">
+      <div
+        id="zonaIkarte"
+        style="text-align: left"
+        *ngIf="poruka == 'nepoznato' && prikaziDeoZaInformacijeOKartama == true"
+      >
+        <div class="row">
+          <label class="col-2">Odaberite zonu:</label>
+          <select
+            class="form-control mb-4 col-8"
+            [(ngModel)]="selectedZona"
+            [ngModelOptions]="{ standalone: true }"
+          >
+            <option
+              *ngFor="let zona of zone"
+              (click)="getSelectedValue(zona.zonaPK.idzona)"
+              value="{{ zona.zonaPK.idzona }}"
+            >
+              {{ zona.naziv + ", cena jedne karte u ovoj zoni je:"
+              }}{{ zona.cena + " din" }}
+            </option>
+          </select>
+        </div>
+        <div class="row justify-content-around">
+          <div class="col-6">
+            <div class="row">
+              <label class="col-5">Odaberite broj karti u ovoj zoni:</label>
+              <input
+                type="number"
+                name="brojKarata"
+                [ngModel]="brojKarata"
+                #box
+                (keyup)="onKey(box.value)"
+                class="form-control mb-5 col-6"
+              />
+            </div>
+          </div>
+          <button
+            type="button"
+            class="btn form-control btn-sm btn-outline-dark col-4"
+            id="dugme2"
+            (click)="AddCardsToRezervation()"
+          >
+            Dodaj karte
+          </button>
 
-      <div class="row" *ngIf="porukaNijeSelektovanaZonaIBrojKarti!='nepoznato'">
-       <label class="col-12" style="font-style: italic; color: orangered;">{{porukaNijeSelektovanaZonaIBrojKarti}}</label>
-      </div>
-        <div class="row" *ngIf="porukaDovoljnoKarti!='nepoznato'">
-          <label class="col-12" style="font-style: italic; color: orangered;">{{porukaDovoljnoKarti}}</label>
+          <div
+            class="row"
+            *ngIf="porukaNijeSelektovanaZonaIBrojKarti != 'nepoznato'"
+          >
+            <label
+              class="col-12"
+              style="font-style: italic; color: orangered; font-size: 1.5vw"
+              >{{ porukaNijeSelektovanaZonaIBrojKarti }}</label
+            >
+          </div>
+          <div
+            class="row"
+            *ngIf="
+              porukaDovoljnoKarti != 'nepoznato' && porukaDovoljnoKarti != 'ima'
+            "
+          >
+            <label
+              class="col-12"
+              style="font-style: italic; color: orangered; font-size: 1.5vw"
+              >{{ porukaDovoljnoKarti }}</label
+            >
+          </div>
         </div>
       </div>
-</div><!--zone i karte-->
+      <!--zone i karte-->
 
-    <div class="row" id="poruka"  *ngIf="poruka!='nepoznato' "><p>{{poruka}}</p></div>
+      <div
+        id="porukaDiv"
+        *ngIf="poruka != 'nepoznato' && prikaziDeoZaInformacijeOKartama == true"
+      >
+        <p id="poruka" class="row">{{ poruka }}</p>
+        <p id="goBackConcert" (click)="goToAllConcerts()">
+          <img src="assets/icon/arrow.png" alt="yt" class="img" />
+          Vratite se da vidite sve koncerte!
+        </p>
+      </div>
 
-      <div id="kupac">
-        <h3>Unesite svoje podatke:</h3>
-        <br>
-        <div class="row" >
-      <label class="col-1">Ime(*):</label>
-      <input  type="text" name="ime" required="true" class=" form-control col-4"/>
-      <label class="col-1">Prezime(*):</label>
-      <input  type="text" name="prezime" required="true" class=" form-control col-4"/>
-    </div>
-        <br>
-        <div class="row" >
-          <label class="col-1">Kompanija:</label>
-          <input  type="text" name="kompanija"  class=" form-control col-9"/>
-
+      <div id="drugiDeo" *ngIf="prikaziDeoZaInformacijeOKorisniku == true">
+        <p id="goBack" (click)="goBack()">
+          <img src="assets/icon/arrow.png" alt="yt" class="img" /> Izaberi druge
+          karte
+        </p>
+        <div id="kupac">
+          <h3>Unesite svoje podatke:</h3>
+          <br />
+          <div class="row">
+            <label class="col-1">Ime(*):</label>
+            <input
+              type="text"
+              name="ime"
+              [(ngModel)]="model.korisnik.ime"
+              required="true"
+              class="form-control col-4"
+            />
+            <label class="col-1">Prezime(*):</label>
+            <input
+              type="text"
+              name="prezime"
+              required="true"
+              [(ngModel)]="model.korisnik.prezime"
+              class="form-control col-4"
+            />
+          </div>
+          <br />
+          <div class="row">
+            <label class="col-1">Kompanija:</label>
+            <input
+              type="text"
+              name="kompanija"
+              [(ngModel)]="model.korisnik.kompanija"
+              class="form-control col-9"
+            />
+          </div>
+          <br />
+          <div class="row">
+            <label class="col-1">Adresa 1(*):</label>
+            <input
+              type="text"
+              [(ngModel)]="model.korisnik.adresa1"
+              name="adresa1"
+              required="true"
+              class="form-control col-4"
+            />
+            <label class="col-1">Adresa 2:</label>
+            <input
+              type="text"
+              [(ngModel)]="model.korisnik.adresa2"
+              name="adresa2"
+              class="form-control col-4"
+            />
+          </div>
+          <br />
+          <div class="row">
+            <label class="col-2">Postanski broj 1(*):</label>
+            <input
+              type="text"
+              [(ngModel)]="model.korisnik.postanskibr"
+              name="postanskiBr"
+              required="true"
+              class="form-control col-2"
+            />
+            <label class="col-1">Mesto(*):</label>
+            <input
+              type="text"
+              name="mesto"
+              [(ngModel)]="model.korisnik.mesto"
+              required="true"
+              class="form-control col-2"
+            />
+            <label class="col-1">Drzava(*):</label>
+            <input
+              type="text"
+              [(ngModel)]="model.korisnik.drzava"
+              name="drzava"
+              required="true"
+              class="form-control col-3"
+            />
+          </div>
+          <br />
+          <div class="row">
+            <label class="col-1">Email(*):</label>
+            <input
+              type="email"
+              [(ngModel)]="model.korisnik.email"
+              name="email"
+              required="true"
+              [email]="true"
+              class="form-control col-4"
+            />
+            <label class="col-2">Potvrda email-a(*):</label>
+            <div class="col-4">
+              <input
+                type="email"
+                [(ngModel)]="model.korisnik.potvrdaemail"
+                name="potvrdaemail"
+                required="true"
+                [email]="true"
+                class="form-control col-12"
+                #potvrdaemail="ngModel"
+              />
+              <small
+                *ngIf="!potvrdaemail.valid && potvrdaemail.dirty"
+                class="text-danger"
+                >Ponovite istu email adresu!
+              </small>
+            </div>
+          </div>
+          <br />
         </div>
-        <br>
-        <div class="row" >
-          <label class="col-1">Adresa 1(*):</label>
-          <input  type="text" name="adresa1" required="true" class="form-control col-4"/>
-          <label class="col-1">Adresa 2:</label>
-          <input  type="text" name="adresa2"class="form-control col-4"/>
-        </div>
-        <br>
-        <div class="row" >
-          <label class="col-2">Postanski broj 1(*):</label>
-          <input  type="text" name="postanskiBr" required="true" class=" form-control col-2"/>
-          <label class="col-1">Mesto(*):</label>
-          <input  type="text" name="mesto" required="true" class="form-control col-2"/>
-          <label class="col-1">Drzava(*):</label>
-          <input  type="text" name="drzava" required="true" class="form-control col-3"/>
+        <!-- ovoje deo za kupca-->
+        <br />
+        <div id="promoKod">ffsfsfvs</div>
 
-        </div>
-        <br>
-        <div class="row" >
-          <label class="col-1">Email(*):</label>
-          <input  type="email" name="email" required="true" class=" form-control col-4"/>
-          <label class="col-2">Potvrda email-a(*):</label>
-          <input  type="email" name="potvrdaemail" required="true" class=" form-control col-4"/>
-        </div>
-        <br>
+        <div id="info">
+          <p style="text-align: left">
+            Izabrali ste: {{ brojKarata }} {{ porukaKarta }} iz zone:
+            {{ zona.naziv }}
+          </p>
 
-      </div><!-- ovoje deo za kupca-->
-   <br>
-    <div id="promoKod">ffsfsfvs</div>
-    <br>
-    <button  type="submit" class="btn btn-outline-dark col-7" id="dugme" [disabled]="RezForm.invalid">Rezervisi kartu</button>
-  </form>
-
-</div>
+          <p style="text-align: right">
+            <u> Ukupna cena:</u> {{ model.ukupno + popust }} din
+          </p>
+          <div id="early-bird" *ngIf="porukaEarlyBird != 'nepoznato'">
+            <p>
+              <img src="assets/icon/early.png" alt="yt" class="img" />
+              <i>{{ porukaEarlyBird }} ( {{ popust }} din)</i>
+            </p>
+            <p style="text-align: right">
+              <u> Ukupna cena sa popustom:</u> {{ model.ukupno }} din
+            </p>
+          </div>
+        </div>
+        <br />
+        <button
+          type="submit"
+          class="btn btn-outline-dark col-7"
+          id="dugme"
+          [disabled]="RezForm.invalid"
+        >
+          Rezervisi kartu
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

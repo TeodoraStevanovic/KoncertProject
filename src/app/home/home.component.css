@@ -1,28 +1,24 @@
-#main{
+#main {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.main
-{
+.main {
   text-align: center;
- min-height: 1000px;
-
+  min-height: 1000px;
 }
-#one
-{
+#one {
   color: whitesmoke;
   background-color: rgba(0, 0, 0, 0.96);
   float: left;
-  width:60%;
+  width: 60%;
   text-align: center;
   padding: 30px 10px 10px 10px;
 }
 
-#two
-{
-  background-image:url("../../assets/background/s1.jpg");
+#two {
+  background-image: url("../../assets/background/s1.jpg");
   background-color: #ffffff; /* Used if the image is unavailable */
   width: 40%;
   background-position: center; /* Center the image */
@@ -32,7 +28,7 @@
   position: sticky;
   float: left;
 }
-#one h1{
+#one h1 {
   font-size: 3vw;
   font-family: "Goudy Old Style", serif;
 
@@ -40,40 +36,88 @@
   font-weight: bold;
   text-transform: uppercase;
 }
-#one h1:hover{
-color: #a19999;
+#one h1:hover {
+  color: #a19999;
 }
 
-
-td{
+td {
   font-size: 1.2vw;
   height: 80px;
   border-bottom: 1px solid #ddd;
   padding-left: 10px;
-
 }
-tr{
+tr {
   background-color: rgba(0, 0, 0, 0.57);
   border-bottom: 1px solid #ddd;
-
 }
-table{
+table {
   argin-top: 75px;
-  color:whitesmoke ;
+  color: whitesmoke;
   width: 76%;
   border-collapse: collapse;
   margin-left: auto;
   margin-right: auto;
 }
-.textcolor{color: #c4c4c4
+.textcolor {
+  color: #c4c4c4;
 }
 
-#linkZaRezervaciju{
+#linkZaRezervaciju {
   font-size: 1.1vw;
   color: orangered;
   text-transform: uppercase;
   white-space: nowrap;
   text-align: center;
   font-family: "Goudy Old Style", serif;
+}
 
+@-webkit-keyframes fly {
+  0% {
+    top: 0%;
+    left: 0%;
+  }
+  75% {
+    top: 50%;
+    left: 50%;
+  }
+  100% {
+    top: 0%;
+    left: 100%;
+  }
+}
+
+@keyframes fly {
+  0% {
+    top: 0%;
+    left: 0%;
+  }
+  25% {
+    top: 45%;
+    left: 45%;
+  }
+  50% {
+    top: 0%;
+    left: 90%;
+  }
+  75% {
+    top: 45%;
+    left: 45%;
+  }
+  100% {
+    top: 0%;
+    left: 0%;
+  }
+}
+
+#box {
+  position: absolute;
+
+  -webkit-animation: fly 15s linear 0s infinite;
+  -moz-animation: fly 15s linear 0s infinite;
+  -o-animation: fly 15s linear 0s infinite;
+  animation: fly 15s linear 0s infinite;
+}
+#box img {
+  width: 50px;
+  height: 50px;
 }

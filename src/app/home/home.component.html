@@ -1,31 +1,49 @@
 <html>
-<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nova+Square" />
-<body>
-<div id="main">
-  <div id="one" class="main" >
-    <h1>Battito Infinito World Tour</h1>
-    <table>
-  <tr *ngFor="let k of koncerti">
- <!--   <input hidden="hidden" [value]="k._id"> -->
-    <td><b><p>{{k.datum|date}}</p></b></td>
-    <td><p class="textcolor">{{k.naziv}}</p></td>
-    <td><p class="textcolor">{{k.grad}}</p></td>
-    <td><p class="textcolor">{{k.lokacija}}</p></td>
-   <td>
-     <button id= "linkZaRezervaciju"type="button" class="btn btn-outline-dark btn-lg" (click)="openPageForReservation(k.idkoncert)"> Rezerviši karte </button>
-</td>
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="//fonts.googleapis.com/css?family=Nova+Square"
+  />
+  <body>
+    <div id="main">
+      <div id="one" class="main">
+        <h1>Battito Infinito World Tour</h1>
+        <table>
+          <tr *ngFor="let k of koncerti">
+            <!--   <input hidden="hidden" [value]="k._id"> -->
+            <td>
+              <b
+                ><p>{{ k.datum | date }}</p></b
+              >
+            </td>
+            <td>
+              <p class="textcolor">{{ k.naziv }}</p>
+            </td>
+            <td>
+              <p class="textcolor">{{ k.grad }}</p>
+            </td>
+            <td>
+              <p class="textcolor">{{ k.lokacija }}</p>
+            </td>
+            <td>
+              <button
+                id="linkZaRezervaciju"
+                type="button"
+                class="btn btn-outline-dark btn-lg"
+                (click)="openPageForReservation(k.idkoncert)"
+              >
+                Rezerviši karte
+              </button>
+            </td>
 
-   <td></td>
-
-
-  </tr>
-
-    </table>
-
-  </div>
-  <div id="two" class="main" >
+            <td></td>
+          </tr>
+        </table>
+      </div>
+      <div id="two" class="main">
+        <!--
+      <p id="box"><img src="assets/icon/early.png" /></p>
+      --></div>
     </div>
-</div>
-
-</body>
+  </body>
 </html>
