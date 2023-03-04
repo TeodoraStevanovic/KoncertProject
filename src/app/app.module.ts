@@ -13,6 +13,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
+import { MojeRezervacijeComponent } from './moje-rezervacije/moje-rezervacije.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,8 @@ import { MatInputModule } from '@angular/material/input';
     HeaderComponent,
     RezervacijaComponent,
     BiografijaComponent,
+    MojeRezervacijeComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +38,7 @@ import { MatInputModule } from '@angular/material/input';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

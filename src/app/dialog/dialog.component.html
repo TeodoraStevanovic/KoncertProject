@@ -1,0 +1,47 @@
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="//fonts.googleapis.com/css?family=Nova+Square"
+/>
+<h1
+  mat-dialog-title
+  style="font-size: 4vw; text-align: center; font-weight: bold"
+>
+  Uspešna rezervacija!
+</h1>
+<hr style="font-weight: bold" />
+<mat-dialog-content>
+  <div id="one">
+    <span class="row" *ngIf="data.datum != ''"
+      >Datum odrzavanja koncerta: {{ data.datum }}</span
+    >
+    <span class="row" *ngIf="data.naziv != ''"
+      >Koncert: {{ data.naziv }}-{{ data.grad }}-{{ data.lokacija }}</span
+    >
+    <span class="row" *ngIf="data.zona != ''">Zona: {{ data.zona }}</span>
+    <span class="row" *ngIf="data.brojKarata != ''"
+      >Broj karata: {{ data.brojKarata }}</span
+    >
+    <span class="row" *ngIf="data.ukupno != ''">
+      Ukupno: {{ data.ukupno }} din</span
+    >
+    <span class="row"><u>Korisnik</u>:</span>
+    <span class="row" *ngIf="data.ime != ''">Ime: {{ data.ime }}</span>
+    <span class="row" *ngIf="data.prezime != ''"
+      >Prezime: {{ data.prezime }}</span
+    >
+    <span class="row" *ngIf="data.email != ''">Email: {{ data.email }}</span>
+    <span class="row" *ngIf="data.adresa != ''">Adresa: {{ data.adresa }}</span>
+  </div>
+  <div id="two">ddsdsffsfsssssssssssssssssss</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button
+    mat-button
+    [mat-dialog-close]="true"
+    class="btn form-control btn-sm btn-outline-dark col-3"
+    id="dugme"
+  >
+    OK
+  </button>
+</mat-dialog-actions>

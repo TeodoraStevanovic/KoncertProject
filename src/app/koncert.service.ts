@@ -10,10 +10,8 @@ export class KoncertService {
 
   retrieveAllKoncerte() {
     return this.http.get<Koncert[]>('http://localhost:8080/koncerti');
-    //console.log("Execute Hello World Bean Service")
   }
   retrieveKoncert(id: number) {
     return this.http.get<Koncert>(`http://localhost:8080/koncerti/${id}`);
-    console.log(id + 'ovo je id');
   }
 }

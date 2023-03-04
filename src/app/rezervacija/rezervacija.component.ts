@@ -11,6 +11,11 @@ import { Rezervacija } from '../model/rezervacija.model';
 import { Korisnik } from '../model/korisnik.model';
 import { KartaService } from '../karta.service';
 import { ZonaPK } from '../model/ZonaPK.model';
+import { PromokodService } from '../promokod.service';
+import { take } from 'rxjs/operators';
+import { isObservable, Observable } from 'rxjs';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-rezervacija',
@@ -34,6 +39,13 @@ export class RezervacijaComponent implements OnInit {
   porukaKarta: string = 'karta';
   porukaEarlyBird: string = 'nepoznato';
   popust: number = 0;
+  promokod: string = '';
+  validanPromokod: boolean = false;
+  porukaPromokod: string = 'nepoznato';
+  popustPromokod: number = 0;
+  primenjenPromokod: boolean = false;
+  porukaPromokodPopust: string = 'nepoznato';
+  isVisible: boolean = true;
 
   modelKorisnik = new Korisnik(-1, '', '', '', '', '', '', '', '', '', '');
   model = new Rezervacija(
@@ -45,10 +57,12 @@ export class RezervacijaComponent implements OnInit {
   );
 
   constructor(
+    public dialog: MatDialog,
     private zonaService: ZonaService,
     private koncertService: KoncertService,
     private rezervacijaService: RezervacijaService,
     private kartaService: KartaService,
+    private promokodService: PromokodService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
@@ -71,6 +85,7 @@ export class RezervacijaComponent implements OnInit {
   ngOnInit(): void {
     this.getKoncert();
     this.populateDropDownZonaForKoncert();
+    this.validanPromokod = false;
   }
 
   private populateDropDownZonaForKoncert() {
@@ -106,9 +121,16 @@ export class RezervacijaComponent implements OnInit {
       this.model.placedAt = new Date();
       this.model.brojKarata = this.brojKarata;
       this.rezervacijaService
-        .createReservationWithCards(this.model, this.selectedZona)
+        .createReservationWithCardsPromoCode(
+          this.model,
+          this.selectedZona,
+          this.promokod
+        )
         .subscribe(() => {
           console.log('Prijava je uspesno izvrsena!');
+          //  alert('Rezervacija je uspesno izvrsena');
+          //ovde metoda
+          this.openDialog(this.model, this.koncert, this.zona);
         });
     } else {
       console.log(RezForm);
@@ -253,6 +275,7 @@ export class RezervacijaComponent implements OnInit {
       console.log('nije ostvaren popust');
     }
   }
+
   ///
   emailValid(form: NgForm) {
     let potvrda = form.value.potvrdaemail;
@@ -263,4 +286,98 @@ export class RezervacijaComponent implements OnInit {
       form.form.controls['potvrdaemail'].setErrors(null);
     }
   }
+
+  CheckAndApplyPromocode() {
+    if (this.promokod != '') {
+      this.daLiJePromokodValidan();
+      setTimeout(() => {
+        console.log('Async Task Calling Callback');
+        console.log('validan li je ' + this.validanPromokod);
+        if (this.validanPromokod == true) {
+          //ako je validan potrebno je primeniti popust na ukupnu cenu i onemoguciti
+          this.promokodPopust();
+          this.isVisible = false;
+        } else {
+          this.porukaPromokod = 'Uneti promokod nije validan!';
+        }
+      }, 500);
+    }
+  }
+
+  private daLiJePromokodValidan() {
+    this.promokodService
+      .checkIfExistAndIfValid(this.promokod)
+      .subscribe((value) => {
+        this.validanPromokod = value;
+        console.log(this.validanPromokod + 'u subu');
+      });
+  }
+
+  onKeyKod(value: string) {
+    this.porukaPromokod = 'nepoznato';
+  }
+
+  private promokodPopust() {
+    //5% popusta
+    this.popustPromokod = this.model.ukupno - this.model.ukupno * 0.95;
+    this.model.ukupno = this.model.ukupno * 0.95;
+    this.porukaPromokodPopust = 'Ostvarili ste promokod popust od 5%';
+    this.primenjenPromokod = true;
+  }
+
+  private openDialog(model: Rezervacija, koncert: Koncert, zona: Zona) {
+    //
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.hasBackdrop = true;
+
+    let dialogRef = this.dialog.open(DialogComponent, {
+      height: '55%',
+      width: '65%',
+
+      data: {
+        datum: koncert.datum,
+        grad: koncert.grad,
+        naziv: koncert.naziv,
+        lokacija: koncert.lokacija,
+        zona: zona.naziv,
+        brojKarata: model.brojKarata,
+        ukupno: model.ukupno,
+        ime: model.korisnik.ime,
+        prezime: model.korisnik.prezime,
+        email: model.korisnik.email,
+        adresa: model.korisnik.adresa1,
+        token: 'token',
+        kupon: 'kupon',
+      },
+    });
+
+    //this.dialog.afterAllClosed.subscribe(() => {
+    // console.log('zatvoren dialog');
+    // });
+    dialogRef.afterClosed().subscribe(() => {
+      console.log('zatvoren dijalog');
+      this.router.navigate(['mojeRezervacije']);
+    });
+    //dialogRef.backdropClick().subscribe(() => {
+    //console.log('zatvoren dijalog pomocu kliktanja na pozadinu');
+    //  this.router.navigate(['mojeRezervacije']);
+    // });
+  }
+}
+
+export interface DialogData {
+  datum: any;
+  grad: any;
+  naziv: any;
+  lokacija: any;
+  zona: any;
+  brojKarata: any;
+  ukupno: any;
+  ime: any;
+  prezime: any;
+  email: any;
+  adresa: any;
+  token: any;
+  kupon: any;
 }

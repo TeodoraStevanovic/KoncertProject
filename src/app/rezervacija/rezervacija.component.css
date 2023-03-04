@@ -31,6 +31,12 @@
   text-align: left;
   border: 5px solid #f6f5f5;
 }
+#promoKod,
+#info {
+  padding-top: 1vw;
+}
+#promoKod {
+}
 label,
 option,
 select,
@@ -48,6 +54,12 @@ p {
 }
 #dugme2 {
   margin-right: 16%;
+}
+#dugme3 {
+  font-family: "Nova Square";
+  font-size: 1.2vw;
+  color: orangered;
+  background-color: #f6f5f5;
 }
 #porukaDiv,
 #info {
@@ -69,6 +81,7 @@ p {
   padding-top: 1%;
   margin: 5px 0px;
 }
+
 #goBackConcert {
   font-size: 1.1vw;
   padding-top: 1%;
@@ -105,4 +118,19 @@ input.ng-dirty.ng-invalid:not(form) {
 }
 #early-bird i {
   font-size: 1vw;
+}
+#porukaKod {
+  font-family: "Nova Square", serif;
+  padding-top: -4vw;
+
+  font-style: italic;
+  color: orangered;
+  font-size: 1.3vw;
+  margin-bottom: 1vw;
+}
+/* za uklanjanje strelica na polju za broj karata */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

@@ -16,4 +16,15 @@ export class RezervacijaService {
       rezervacija
     );
   }
+  createReservationWithCardsPromoCode(
+    rezervacija: any,
+    selectedZona: number,
+    promokod: any
+  ) {
+    return this.http.post(
+      `http://localhost:8080/rezervacije/${selectedZona}/${promokod}`,
+      rezervacija,
+      promokod
+    );
+  }
 }

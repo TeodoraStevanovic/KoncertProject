@@ -3,13 +3,15 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RezervacijaComponent } from './rezervacija/rezervacija.component';
 import { BiografijaComponent } from './biografija/biografija.component';
+import { MojeRezervacijeComponent } from './moje-rezervacije/moje-rezervacije.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'reservation', component: RezervacijaComponent },
+  { path: 'mojeRezervacije', component: MojeRezervacijeComponent },
 
-  { path: 'reservation', component: RezervacijaComponent },
   { path: 'biografija', component: BiografijaComponent },
 
   //{ path: 'footer', component: FooterComponent },

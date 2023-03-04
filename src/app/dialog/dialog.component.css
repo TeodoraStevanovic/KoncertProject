@@ -1,0 +1,28 @@
+#dugme {
+  font-family: "Nova Square";
+  font-size: 1.2vw;
+  color: orangered;
+  border: 2px orangered solid;
+  background-color: whitesmoke;
+}
+span {
+  font-size: 1vw;
+  font-family: "Nova Square";
+  color: #262626;
+}
+h1 {
+  color: #262626;
+}
+
+#one {
+  color: whitesmoke;
+  float: left;
+  width: 60%;
+  text-align: center;
+}
+
+#two {
+  width: 40%;
+  position: sticky;
+  float: left;
+}

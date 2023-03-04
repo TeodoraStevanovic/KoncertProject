@@ -92,7 +92,7 @@
       </div>
 
       <div id="drugiDeo" *ngIf="prikaziDeoZaInformacijeOKorisniku == true">
-        <p id="goBack" (click)="goBack()">
+        <p id="goBack" (click)="goBack()" *ngIf="isVisible">
           <img src="assets/icon/arrow.png" alt="yt" class="img" /> Izaberi druge
           karte
         </p>
@@ -205,7 +205,35 @@
         </div>
         <!-- ovoje deo za kupca-->
         <br />
-        <div id="promoKod">ffsfsfvs</div>
+        <div id="promoKod" *ngIf="isVisible">
+          <div class="row">
+            <div class="col-7">
+              <div class="row align-items-start">
+                <label class="col-3">Promokod: </label>
+                <input
+                  type="text"
+                  name="promokod"
+                  [(ngModel)]="promokod"
+                  class="form-control mb-5 col-7"
+                  #box
+                  (keyup)="onKeyKod(box.value)"
+                />
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn form-control btn-sm btn-outline-dark col-3"
+              id="dugme3"
+              (click)="CheckAndApplyPromocode()"
+              [disabled]="promokod == ''"
+            >
+              Primeni promokod
+            </button>
+          </div>
+          <div id="porukaKod" *ngIf="porukaPromokod != 'nepoznato'">
+            {{ porukaPromokod }}
+          </div>
+        </div>
 
         <div id="info">
           <p style="text-align: left">
@@ -214,12 +242,26 @@
           </p>
 
           <p style="text-align: right">
-            <u> Ukupna cena:</u> {{ model.ukupno + popust }} din
+            <u> Ukupna cena:</u>
+            {{ model.ukupno + popust + popustPromokod }} din
           </p>
-          <div id="early-bird" *ngIf="porukaEarlyBird != 'nepoznato'">
+          <div
+            id="early-bird"
+            *ngIf="
+              porukaEarlyBird != 'nepoznato' ||
+              porukaPromokodPopust != 'nepoznato'
+            "
+          >
             <p>
-              <img src="assets/icon/early.png" alt="yt" class="img" />
-              <i>{{ porukaEarlyBird }} ( {{ popust }} din)</i>
+              <!--   <img src="assets/icon/early.png" alt="yt" class="img" />
+           -->
+              <i class="row" *ngIf="porukaEarlyBird != 'nepoznato'"
+                >{{ porukaEarlyBird }} ( {{ popust }} din)</i
+              >
+
+              <i class="row" *ngIf="porukaPromokodPopust != 'nepoznato'"
+                >{{ porukaPromokodPopust }} ( {{ popustPromokod }} din)</i
+              >
             </p>
             <p style="text-align: right">
               <u> Ukupna cena sa popustom:</u> {{ model.ukupno }} din
