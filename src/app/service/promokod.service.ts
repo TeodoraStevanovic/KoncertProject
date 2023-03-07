@@ -7,6 +7,6 @@ export class PromokodService {
   constructor(public http: HttpClient) {}
 
   checkIfExistAndIfValid(kod: string) {
-    return this.http.get<boolean>(`http://localhost:8080/promokod/${kod}`);
+    return this.http.get<boolean>(`http://localhost:8080/api/promokod/${kod}`);
   }
 }

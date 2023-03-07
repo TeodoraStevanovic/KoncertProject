@@ -22,7 +22,7 @@ export class RezervacijaService {
     promokod: any
   ) {
     return this.http.post(
-      `http://localhost:8080/rezervacije/${selectedZona}/${promokod}`,
+      `http://localhost:8080/api/rezervacije/${selectedZona}/${promokod}`,
       rezervacija,
       promokod
     );

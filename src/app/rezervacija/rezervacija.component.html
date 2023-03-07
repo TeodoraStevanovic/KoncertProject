@@ -101,21 +101,43 @@
           <br />
           <div class="row">
             <label class="col-1">Ime(*):</label>
-            <input
-              type="text"
-              name="ime"
-              [(ngModel)]="model.korisnik.ime"
-              required="true"
-              class="form-control col-4"
-            />
+            <div class="col-4">
+              <input
+                type="text"
+                name="ime"
+                [(ngModel)]="model.korisnik.ime"
+                required="true"
+                class="form-control col-12"
+                #ime="ngModel"
+              />
+              <small
+                *ngIf="
+                  (!ime.valid && ime.dirty) ||
+                  (RezForm.submitted && RezForm.invalid && !ime.valid)
+                "
+                class="text-danger"
+                >Ime je obavezno polje!
+              </small>
+            </div>
             <label class="col-1">Prezime(*):</label>
-            <input
-              type="text"
-              name="prezime"
-              required="true"
-              [(ngModel)]="model.korisnik.prezime"
-              class="form-control col-4"
-            />
+            <div class="col-4">
+              <input
+                type="text"
+                name="prezime"
+                required="true"
+                [(ngModel)]="model.korisnik.prezime"
+                class="form-control col-12"
+                #prezime="ngModel"
+              />
+              <small
+                *ngIf="
+                  (!prezime.valid && prezime.dirty) ||
+                  (RezForm.submitted && RezForm.invalid && !prezime.valid)
+                "
+                class="text-danger"
+                >Prezime je obavezno polje!
+              </small>
+            </div>
           </div>
           <br />
           <div class="row">
@@ -130,13 +152,24 @@
           <br />
           <div class="row">
             <label class="col-1">Adresa 1(*):</label>
-            <input
-              type="text"
-              [(ngModel)]="model.korisnik.adresa1"
-              name="adresa1"
-              required="true"
-              class="form-control col-4"
-            />
+            <div class="col-4">
+              <input
+                type="text"
+                [(ngModel)]="model.korisnik.adresa1"
+                name="adresa1"
+                required="true"
+                class="form-control col-12"
+                #adresa="ngModel"
+              />
+              <small
+                *ngIf="
+                  (!adresa.valid && adresa.dirty) ||
+                  (RezForm.submitted && RezForm.invalid && !adresa.valid)
+                "
+                class="text-danger"
+                >Adresa je obavezno polje!
+              </small>
+            </div>
             <label class="col-1">Adresa 2:</label>
             <input
               type="text"
@@ -148,41 +181,85 @@
           <br />
           <div class="row">
             <label class="col-2">Postanski broj 1(*):</label>
-            <input
-              type="text"
-              [(ngModel)]="model.korisnik.postanskibr"
-              name="postanskiBr"
-              required="true"
-              class="form-control col-2"
-            />
+            <div class="col-2">
+              <input
+                type="text"
+                [(ngModel)]="model.korisnik.postanskibr"
+                name="postanskiBr"
+                required="true"
+                class="form-control col-12"
+                #pb="ngModel"
+              />
+              <small
+                *ngIf="
+                  (!pb.valid && pb.dirty) ||
+                  (RezForm.submitted && RezForm.invalid && !pb.valid)
+                "
+                class="text-danger"
+                >Postanski broj je obavezan!
+              </small>
+            </div>
             <label class="col-1">Mesto(*):</label>
-            <input
-              type="text"
-              name="mesto"
-              [(ngModel)]="model.korisnik.mesto"
-              required="true"
-              class="form-control col-2"
-            />
+            <div class="col-2">
+              <input
+                type="text"
+                name="mesto"
+                [(ngModel)]="model.korisnik.mesto"
+                required="true"
+                class="form-control col-12"
+                #mesto="ngModel"
+              />
+              <small
+                *ngIf="
+                  (!mesto.valid && mesto.dirty) ||
+                  (RezForm.submitted && RezForm.invalid && !mesto.valid)
+                "
+                class="text-danger"
+                >Mesto je obavezno polje!
+              </small>
+            </div>
             <label class="col-1">Drzava(*):</label>
-            <input
-              type="text"
-              [(ngModel)]="model.korisnik.drzava"
-              name="drzava"
-              required="true"
-              class="form-control col-3"
-            />
+            <div class="col-3">
+              <input
+                type="text"
+                [(ngModel)]="model.korisnik.drzava"
+                name="drzava"
+                required="true"
+                class="form-control col-12"
+                #drzava="ngModel"
+              />
+              <small
+                *ngIf="
+                  (!drzava.valid && drzava.dirty) ||
+                  (RezForm.submitted && RezForm.invalid && !drzava.valid)
+                "
+                class="text-danger"
+                >Drzava je obavezno polje!
+              </small>
+            </div>
           </div>
           <br />
           <div class="row">
             <label class="col-1">Email(*):</label>
-            <input
-              type="email"
-              [(ngModel)]="model.korisnik.email"
-              name="email"
-              required="true"
-              [email]="true"
-              class="form-control col-4"
-            />
+            <div class="col-4">
+              <input
+                type="email"
+                [(ngModel)]="model.korisnik.email"
+                name="email"
+                required="true"
+                [email]="true"
+                class="form-control col-12"
+                #email="ngModel"
+              />
+              <small
+                *ngIf="
+                  (!email.valid && email.dirty) ||
+                  (RezForm.submitted && RezForm.invalid && !email.valid)
+                "
+                class="text-danger"
+                >Email je obavezno polje!
+              </small>
+            </div>
             <label class="col-2">Potvrda email-a(*):</label>
             <div class="col-4">
               <input
@@ -195,7 +272,10 @@
                 #potvrdaemail="ngModel"
               />
               <small
-                *ngIf="!potvrdaemail.valid && potvrdaemail.dirty"
+                *ngIf="
+                  (!potvrdaemail.valid && potvrdaemail.dirty) ||
+                  (RezForm.submitted && RezForm.invalid && !potvrdaemail.valid)
+                "
                 class="text-danger"
                 >Ponovite istu email adresu!
               </small>
@@ -269,12 +349,11 @@
           </div>
         </div>
         <br />
-        <button
-          type="submit"
-          class="btn btn-outline-dark col-7"
-          id="dugme"
-          [disabled]="RezForm.invalid"
-        >
+        <button type="submit" class="btn btn-outline-dark col-7" id="dugme">
+          <!--
+ [disabled]="RezForm.invalid"
+          -->
+
           Rezervisi kartu
         </button>
       </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { KoncertService } from '../koncert.service';
+import { KoncertService } from '../service/koncert.service';
 import { Router } from '@angular/router';
 import { Koncert } from '../model/koncert.model';
 

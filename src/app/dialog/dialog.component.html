@@ -25,6 +25,8 @@
     <span class="row" *ngIf="data.ukupno != ''">
       Ukupno: {{ data.ukupno }} din</span
     >
+  </div>
+  <div id="two">
     <span class="row"><u>Korisnik</u>:</span>
     <span class="row" *ngIf="data.ime != ''">Ime: {{ data.ime }}</span>
     <span class="row" *ngIf="data.prezime != ''"
@@ -33,7 +35,18 @@
     <span class="row" *ngIf="data.email != ''">Email: {{ data.email }}</span>
     <span class="row" *ngIf="data.adresa != ''">Adresa: {{ data.adresa }}</span>
   </div>
-  <div id="two">ddsdsffsfsssssssssssssssssss</div>
+  <br />
+  <div id="podaci">
+    <span class="row" *ngIf="data.token != ''" style="padding-top: 1vw"
+      ><b>Obavezno sačuvajte sledeće podatke:</b>
+      <br />
+    </span>
+    <span class="row" *ngIf="data.token != ''"
+      >Vaš token za izmenu rezervacije:
+    </span>
+    <span class="row" *ngIf="data.token != ''">{{ data.token }}</span>
+    <span class="row" *ngIf="data.kupon != ''">Promokod: {{ data.kupon }}</span>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button

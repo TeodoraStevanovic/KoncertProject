@@ -2,16 +2,16 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Koncert } from '../model/koncert.model';
 import { NgForm } from '@angular/forms';
 import { Zona } from '../model/zona.model';
-import { KoncertService } from '../koncert.service';
+import { KoncertService } from '../service/koncert.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ZonaService } from '../zona.service';
-import { Subscription } from 'rxjs';
-import { RezervacijaService } from '../rezervacija.service';
+import { ZonaService } from '../service/zona.service';
+import { map, Subscription } from 'rxjs';
+import { RezervacijaService } from '../service/rezervacija.service';
 import { Rezervacija } from '../model/rezervacija.model';
 import { Korisnik } from '../model/korisnik.model';
-import { KartaService } from '../karta.service';
+import { KartaService } from '../service/karta.service';
 import { ZonaPK } from '../model/ZonaPK.model';
-import { PromokodService } from '../promokod.service';
+import { PromokodService } from '../service/promokod.service';
 import { take } from 'rxjs/operators';
 import { isObservable, Observable } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -46,7 +46,8 @@ export class RezervacijaComponent implements OnInit {
   primenjenPromokod: boolean = false;
   porukaPromokodPopust: string = 'nepoznato';
   isVisible: boolean = true;
-
+  token: string = '';
+  generisanPromokod: string = '';
   modelKorisnik = new Korisnik(-1, '', '', '', '', '', '', '', '', '', '');
   model = new Rezervacija(
     -1,
@@ -126,11 +127,22 @@ export class RezervacijaComponent implements OnInit {
           this.selectedZona,
           this.promokod
         )
-        .subscribe(() => {
+        .subscribe((value) => {
           console.log('Prijava je uspesno izvrsena!');
-          //  alert('Rezervacija je uspesno izvrsena');
-          //ovde metoda
-          this.openDialog(this.model, this.koncert, this.zona);
+          const values = Object.values(value);
+          this.token = values[0];
+          this.generisanPromokod = values[1];
+          console.log(this.token);
+          console.log(this.promokod);
+
+          console.log(value);
+          this.openDialog(
+            this.model,
+            this.koncert,
+            this.zona,
+            this.token,
+            this.generisanPromokod
+          );
         });
     } else {
       console.log(RezForm);
@@ -325,14 +337,20 @@ export class RezervacijaComponent implements OnInit {
     this.primenjenPromokod = true;
   }
 
-  private openDialog(model: Rezervacija, koncert: Koncert, zona: Zona) {
+  private openDialog(
+    model: Rezervacija,
+    koncert: Koncert,
+    zona: Zona,
+    token: string,
+    promokod: string
+  ) {
     //
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.hasBackdrop = true;
 
     let dialogRef = this.dialog.open(DialogComponent, {
-      height: '55%',
+      height: '60%',
       width: '65%',
 
       data: {
@@ -347,8 +365,8 @@ export class RezervacijaComponent implements OnInit {
         prezime: model.korisnik.prezime,
         email: model.korisnik.email,
         adresa: model.korisnik.adresa1,
-        token: 'token',
-        kupon: 'kupon',
+        token: token,
+        kupon: promokod,
       },
     });
 
