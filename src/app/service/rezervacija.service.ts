@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ResponseRezervacijaKarte } from '../model/responseRezervacijaKarte';
 @Injectable({
   providedIn: 'root',
 })
@@ -25,6 +26,20 @@ export class RezervacijaService {
       `http://localhost:8080/api/rezervacije/${selectedZona}/${promokod}`,
       rezervacija,
       promokod
+    );
+  }
+
+  findRezervacija(email: string, token: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+      ID: '001',
+      'Access-Control-Allow-Origin': '*',
+    });
+    const requestOptions = { headers: headers };
+    return this.http.get<ResponseRezervacijaKarte>(
+      `http://localhost:8080/auth/rezervacija/${token}/${email}`,
+      requestOptions
     );
   }
 }

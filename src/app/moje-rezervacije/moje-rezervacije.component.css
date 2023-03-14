@@ -12,6 +12,7 @@
 }
 
 #unutrasnji {
+  font-family: "Nova Square";
   margin: 20px;
   background-color: #262626;
   min-height: 1400px;
@@ -28,4 +29,47 @@ p {
 }
 #naslov:hover {
   font-style: oblique;
+}
+label {
+  color: white;
+  font-size: 1.5vw;
+}
+#podnaslov {
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+  color: orangered;
+  font-size: 1vw;
+  text-align: left;
+}
+
+#dugme {
+  font-family: "Nova Square";
+  font-size: 1.5vw;
+  color: white;
+  background-color: #444444;
+  border: 1px solid white;
+}
+#podaci {
+  color: white;
+}
+#tabela {
+  color: white;
+  margin-top: 2vw;
+  border: 1px solid white;
+}
+th,
+tr {
+  text-align: center;
+}
+td,
+th,
+tr {
+  vertical-align: center;
+}
+tr:hover {
+  background-color: #7c7c7c;
+}
+#poruka {
+  margin-top: 1vw;
+  color: white;
 }

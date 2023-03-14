@@ -6,5 +6,106 @@
 <div id="glavni">
   <div id="unutrasnji">
     <h1 id="naslov"><b>Moje rezervacije</b></h1>
+    <br />
+
+    <p id="podnaslov">Unesite vaše podatke:</p>
+
+    <form #ProveraForm="ngForm" (ngSubmit)="FindRezervation(ProveraForm)">
+      <div class="row">
+        <label class="col-2 mb-4">Email(*): </label>
+        <div class="col-10">
+          <input
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            required="true"
+            [email]="true"
+            class="form-control col-12"
+            #emailpolje="ngModel"
+          />
+          <small
+            *ngIf="
+              (!emailpolje.valid && emailpolje.dirty) ||
+              (ProveraForm.submitted &&
+                ProveraForm.invalid &&
+                !emailpolje.valid)
+            "
+            style="color: orangered"
+            >Email je obavezno polje!
+          </small>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-2 mb-4">Token(*): </label>
+        <div class="col-10">
+          <input
+            type="email"
+            [(ngModel)]="token"
+            name="token"
+            required="true"
+            class="form-control col-12"
+            #tokenRez="ngModel"
+          />
+          <small
+            *ngIf="
+              (!tokenRez.valid && tokenRez.dirty) ||
+              (ProveraForm.submitted && ProveraForm.invalid && !tokenRez.valid)
+            "
+            style="color: orangered"
+            >Unesite vas token!
+          </small>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-2"></label>
+        <button
+          type="submit"
+          class="btn btn-outline-dark col-10 mt-5"
+          id="dugme"
+        >
+          Pronadji rezervaciju
+        </button>
+      </div>
+    </form>
+    <br />
+    <div id="podaci" *ngIf="prikazi == true">
+      <table class="table" id="tabela">
+        <thead>
+          <tr>
+            <th scope="col">Koncert</th>
+            <th scope="col">Zona</th>
+            <th scope="col">Broj karti</th>
+
+            <th scope="col">Vreme rezervisanja</th>
+            <th scope="col">Ime</th>
+            <th scope="col">Prezime</th>
+            <th scope="col">Email</th>
+            <th scope="col">Adresa</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              {{ zona.koncert.naziv }} {{ zona.koncert.grad }}
+              {{ zona.koncert.datum }}
+            </th>
+            <th>{{ zona.naziv }}</th>
+            <th>{{ rezervacija.brojKarata }}</th>
+            <td>{{ rezervacija.placedAt }}</td>
+            <td>{{ rezervacija.korisnik.ime }}</td>
+            <td>{{ rezervacija.korisnik.prezime }}</td>
+            <td>{{ rezervacija.korisnik.email }}</td>
+            <td>{{ rezervacija.korisnik.adresa1 }}</td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="poruka == 'nema odgovora'" id="poruka">
+      <p>Nije pronadjena rezervacija sa zadatim tokenom i email-om!</p>
+    </div>
   </div>
 </div>

@@ -132,10 +132,6 @@ export class RezervacijaComponent implements OnInit {
           const values = Object.values(value);
           this.token = values[0];
           this.generisanPromokod = values[1];
-          console.log(this.token);
-          console.log(this.promokod);
-
-          console.log(value);
           this.openDialog(
             this.model,
             this.koncert,
@@ -234,14 +230,11 @@ export class RezervacijaComponent implements OnInit {
     if (this.selectedZona != -1) {
       this.zonaService.retrieveZona(this.selectedZona).subscribe((data) => {
         this.zona = data;
-        //  console.log(data);
-        //  console.log(this.zona);
       });
     }
   }
 
   getSelectedValue(idzona: number) {
-    console.log('koristili smo ovo');
     this.selectedZona = idzona;
   }
 
@@ -304,7 +297,6 @@ export class RezervacijaComponent implements OnInit {
       this.daLiJePromokodValidan();
       setTimeout(() => {
         console.log('Async Task Calling Callback');
-        console.log('validan li je ' + this.validanPromokod);
         if (this.validanPromokod == true) {
           //ako je validan potrebno je primeniti popust na ukupnu cenu i onemoguciti
           this.promokodPopust();
@@ -321,7 +313,6 @@ export class RezervacijaComponent implements OnInit {
       .checkIfExistAndIfValid(this.promokod)
       .subscribe((value) => {
         this.validanPromokod = value;
-        console.log(this.validanPromokod + 'u subu');
       });
   }
 
