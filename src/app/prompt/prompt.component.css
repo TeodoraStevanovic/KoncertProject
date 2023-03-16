@@ -1,0 +1,16 @@
+#one {
+  float: left;
+  width: 20%;
+  text-align: center;
+}
+
+#two {
+  margin-top: 1vw;
+  width: 80%;
+  position: sticky;
+  float: left;
+}
+.dugme {
+  margin-right: 2vw;
+  padding: 0px 1vw;
+}

@@ -59,13 +59,14 @@ table {
   margin-right: auto;
 }
 .textcolor {
-  color: #c4c4c4;
+  color: #e1e1e1;
 }
 
 #linkZaRezervaciju {
   font-size: 1.1vw;
   color: orangered;
   text-transform: uppercase;
+  font-weight: bold;
   white-space: nowrap;
   text-align: center;
   font-family: "Goudy Old Style", serif;

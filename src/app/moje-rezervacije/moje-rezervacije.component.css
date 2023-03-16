@@ -50,9 +50,14 @@ label {
   border: 1px solid white;
 }
 #podaci {
+  margin-left: -3vw;
   color: white;
 }
 #tabela {
+  font-size: 1vw;
+  margin-right: auto;
+  margin-left: auto;
+  width: 80%;
   color: white;
   margin-top: 2vw;
   border: 1px solid white;
@@ -64,12 +69,21 @@ tr {
 td,
 th,
 tr {
-  vertical-align: center;
+  vertical-align: middle;
 }
 tr:hover {
   background-color: #7c7c7c;
 }
 #poruka {
-  margin-top: 1vw;
+  margin-top: 2vw;
   color: white;
+}
+
+.dugmici {
+  color: white;
+  background-color: #444444;
+  height: 2.2vw;
+  padding-top: 0.4vw;
+  text-align: center;
+  border: 1px solid white;
 }

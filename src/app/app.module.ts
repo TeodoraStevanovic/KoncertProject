@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MojeRezervacijeComponent } from './moje-rezervacije/moje-rezervacije.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
+import { PromptComponent } from './prompt/prompt.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { DialogComponent } from './dialog/dialog.component';
     BiografijaComponent,
     MojeRezervacijeComponent,
     DialogComponent,
+    PromptComponent,
   ],
   imports: [
     BrowserModule,

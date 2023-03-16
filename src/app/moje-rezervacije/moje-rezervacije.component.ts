@@ -8,6 +8,9 @@ import { Zona } from '../model/zona.model';
 import { Karta } from '../model/karta.model';
 import { ZonaPK } from '../model/ZonaPK.model';
 import { Koncert } from '../model/koncert.model';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
+import { PromptComponent } from '../prompt/prompt.component';
 @Component({
   selector: 'app-moje-rezervacije',
   templateUrl: './moje-rezervacije.component.html',
@@ -36,6 +39,7 @@ export class MojeRezervacijeComponent implements OnInit {
 
   karte: Array<Karta> = [];
   constructor(
+    public dialog: MatDialog,
     private rezervacijaService: RezervacijaService,
     private router: Router
   ) {}
@@ -66,9 +70,8 @@ export class MojeRezervacijeComponent implements OnInit {
     if (ProveraForm.valid) {
       //  console.log(this.email);
       // console.log(this.token);
-      this.rezervacijaService
-        .findRezervacija(this.email, this.token)
-        .subscribe((value) => {
+      this.rezervacijaService.findRezervacija(this.email, this.token).subscribe(
+        (value) => {
           console.log('ovde smo');
           console.log(value);
           if (value.rezervacija != null && value.zona != null) {
@@ -80,9 +83,40 @@ export class MojeRezervacijeComponent implements OnInit {
             this.poruka = 'nema odgovora';
             this.prikazi = false;
           }
-        });
+        },
+        (error) => {
+          console.log('desila se greska');
+          this.poruka = 'nema odgovora';
+          this.prikazi = false;
+        }
+      );
     } else {
       console.log(ProveraForm);
     }
   }
+
+  OpenDialog(rezervacijaId: number) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.hasBackdrop = true;
+
+    let dialogRef = this.dialog.open(PromptComponent, {
+      height: '40%',
+      width: '40%',
+      data: {
+        idRezervacija: rezervacijaId,
+        token: this.token,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      console.log('zatvoren dijalog');
+
+      //this.router.navigate(['mojeRezervacije']);
+    });
+  }
+}
+export interface PromptData {
+  idRezervacija: number;
+  token: string;
 }

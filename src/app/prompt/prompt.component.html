@@ -1,0 +1,39 @@
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="//fonts.googleapis.com/css?family=Nova+Square"
+/>
+<h1
+  mat-dialog-title
+  style="font-size: 2vw; text-align: center; font-weight: bold"
+>
+  Brisanje rezervacije!
+</h1>
+<hr style="font-weight: bold" />
+<mat-dialog-content>
+  <div id="one">
+    <img src="assets/icon/remove.png" height="50vw" alt="slika" />
+  </div>
+  <div id="two">
+    <p>Da li ste sigurni da zelite da obrisete rezervaciju?</p>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button
+    mat-button
+    [mat-dialog-close]="true"
+    (click)="ObrisiRezervaciju(data.idRezervacija, data.token)"
+    class="btn btn-sm btn-outline-dark col-3"
+    class="dugme"
+  >
+    Da
+  </button>
+  <button
+    mat-button
+    [mat-dialog-close]="true"
+    class="btn btn-sm btn-outline-dark col-3"
+    class="dugme"
+  >
+    Otkaži
+  </button>
+</mat-dialog-actions>

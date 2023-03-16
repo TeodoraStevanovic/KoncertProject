@@ -76,7 +76,7 @@
             <th scope="col">Zona</th>
             <th scope="col">Broj karti</th>
 
-            <th scope="col">Vreme rezervisanja</th>
+            <th scope="col">Datum rezervacije</th>
             <th scope="col">Ime</th>
             <th scope="col">Prezime</th>
             <th scope="col">Email</th>
@@ -87,25 +87,35 @@
         </thead>
         <tbody>
           <tr>
-            <th>
+            <td>
               {{ zona.koncert.naziv }} {{ zona.koncert.grad }}
               {{ zona.koncert.datum }}
-            </th>
-            <th>{{ zona.naziv }}</th>
-            <th>{{ rezervacija.brojKarata }}</th>
-            <td>{{ rezervacija.placedAt }}</td>
+            </td>
+            <td>{{ zona.naziv }}</td>
+            <td>{{ rezervacija.brojKarata }}</td>
+            <td>{{ rezervacija.placedAt | date }}</td>
             <td>{{ rezervacija.korisnik.ime }}</td>
             <td>{{ rezervacija.korisnik.prezime }}</td>
             <td>{{ rezervacija.korisnik.email }}</td>
             <td>{{ rezervacija.korisnik.adresa1 }}</td>
-            <td></td>
-            <td></td>
+            <td>
+              <div
+                class="dugmici"
+                (click)="OpenDialog(rezervacija.idrezervacija)"
+              >
+                <a>Obrisi</a>
+              </div>
+            </td>
+            <td>
+              <div class="dugmici"><a>Izmeni</a></div>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
     <div *ngIf="poruka == 'nema odgovora'" id="poruka">
       <p>Nije pronadjena rezervacija sa zadatim tokenom i email-om!</p>
+      <img src="assets/icon/search.png" alt="yt" height="300vw" />
     </div>
   </div>
 </div>

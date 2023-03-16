@@ -42,4 +42,18 @@ export class RezervacijaService {
       requestOptions
     );
   }
+
+  deleteReservation(id: number, token: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+      ID: '001',
+      'Access-Control-Allow-Origin': '*',
+    });
+    const requestOptions = { headers: headers };
+    return this.http.delete(
+      `http://localhost:8080/auth/rezervacija/${id}`,
+      requestOptions
+    );
+  }
 }

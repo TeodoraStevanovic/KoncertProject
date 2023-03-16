@@ -341,8 +341,8 @@ export class RezervacijaComponent implements OnInit {
     dialogConfig.hasBackdrop = true;
 
     let dialogRef = this.dialog.open(DialogComponent, {
-      height: '60%',
-      width: '65%',
+      height: '70%',
+      width: '70%',
 
       data: {
         datum: koncert.datum,
