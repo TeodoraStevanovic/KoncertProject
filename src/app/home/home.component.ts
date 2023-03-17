@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { KoncertService } from '../service/koncert.service';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { Koncert } from '../model/koncert.model';
 
 @Component({
@@ -36,7 +36,13 @@ export class HomeComponent implements OnInit {
   }
 
   openPageForReservation(id: number) {
-    console.log(`rezervisi ${id}`);
-    this.router.navigate(['reservation'], { queryParams: { id: id } });
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        id: id,
+      },
+      //skipLocationChange: true,
+      // queryParamsHandling: 'preserve',
+    };
+    this.router.navigate(['reservation'], navigationExtras);
   }
 }

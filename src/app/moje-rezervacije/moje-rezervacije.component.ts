@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { RezervacijaService } from '../service/rezervacija.service';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { Rezervacija } from '../model/rezervacija.model';
 import { Korisnik } from '../model/korisnik.model';
 import { Zona } from '../model/zona.model';
@@ -9,8 +9,8 @@ import { Karta } from '../model/karta.model';
 import { ZonaPK } from '../model/ZonaPK.model';
 import { Koncert } from '../model/koncert.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DialogComponent } from '../dialog/dialog.component';
-import { PromptComponent } from '../prompt/prompt.component';
+import { DialogComponent } from '../popup-dialogs/dialog/dialog.component';
+import { PromptComponent } from '../popup-dialogs/prompt/prompt.component';
 @Component({
   selector: 'app-moje-rezervacije',
   templateUrl: './moje-rezervacije.component.html',
@@ -114,6 +114,21 @@ export class MojeRezervacijeComponent implements OnInit {
 
       //this.router.navigate(['mojeRezervacije']);
     });
+  }
+
+  OpenPageForAlterReservation() {
+    console.log(`izmeni rezervaciju ${this.rezervacija.idrezervacija}`);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        rezervacija: JSON.stringify(this.rezervacija),
+        karte: JSON.stringify(this.karte),
+        zona: JSON.stringify(this.zona),
+        token: this.token,
+      },
+      //skipLocationChange: true,
+    };
+    //the skipLocationChange property is set to true to skip updating the browser's URL, preventing the parameters from being visible in the URL.
+    this.router.navigate(['izmenaRezervacije'], navigationExtras);
   }
 }
 export interface PromptData {

@@ -1,0 +1,187 @@
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="//fonts.googleapis.com/css?family=Nova+Square"
+/>
+<div id="glavni">
+  <div id="unutrasnji">
+    <h1 id="naslov"><b>Izmena rezervacije</b></h1>
+    <br />
+    <p id="podnaslov">Vaša rezervacija:</p>
+    <div id="prviDeo">
+      <div id="kupac">
+        <div class="row">
+          <label class="col-2">Ime:</label>
+          <input
+            readonly
+            type="text"
+            name="ime"
+            [(ngModel)]="rezervacija.korisnik.ime"
+            required="true"
+            class="form-control col-4"
+          />
+
+          <label class="col-2">Prezime:</label>
+          <input
+            readonly
+            type="text"
+            name="prezime"
+            required="true"
+            [(ngModel)]="rezervacija.korisnik.prezime"
+            class="form-control col-4"
+          />
+        </div>
+
+        <br />
+        <div class="row">
+          <label class="col-2">Kompanija:</label>
+          <input
+            readonly
+            type="text"
+            name="kompanija"
+            [(ngModel)]="rezervacija.korisnik.kompanija"
+            class="form-control col-10"
+          />
+        </div>
+        <br />
+        <div class="row">
+          <label class="col-2">Adresa 1: </label>
+
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="rezervacija.korisnik.adresa1"
+            name="adresa1"
+            required="true"
+            class="form-control col-4"
+          />
+
+          <label class="col-2">Adresa 2:</label>
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="rezervacija.korisnik.adresa2"
+            name="adresa2"
+            class="form-control col-4"
+          />
+        </div>
+        <br />
+        <div class="row">
+          <label class="col-2">Postanski broj:</label>
+
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="rezervacija.korisnik.postanskibr"
+            name="postanskiBr"
+            required="true"
+            class="form-control col-2"
+          />
+
+          <label class="col-1">Mesto:</label>
+
+          <input
+            readonly
+            type="text"
+            name="mesto"
+            [(ngModel)]="rezervacija.korisnik.mesto"
+            required="true"
+            class="form-control col-3"
+          />
+
+          <label class="col-1">Drzava:</label>
+
+          <input
+            readonly
+            type="text"
+            [(ngModel)]="rezervacija.korisnik.drzava"
+            name="drzava"
+            required="true"
+            class="form-control col-3"
+          />
+        </div>
+        <br />
+        <div class="row">
+          <label class="col-2">Email:</label>
+
+          <input
+            readonly
+            type="email"
+            [(ngModel)]="rezervacija.korisnik.email"
+            name="email"
+            required="true"
+            [email]="true"
+            class="form-control col-4"
+          />
+
+          <label class="col-2">Potvrda emaila:</label>
+
+          <input
+            readonly
+            type="email"
+            [(ngModel)]="rezervacija.korisnik.potvrdaemail"
+            name="potvrdaemail"
+            required="true"
+            [email]="true"
+            class="form-control col-4"
+          />
+        </div>
+        <!--prvi deo-->
+      </div>
+    </div>
+    <div id="drugiDeo">
+      <p style="font-size: 2vw; text-align: left">
+        Koncert: {{ zona.koncert.datum }} | {{ zona.koncert.naziv }} |
+        {{ zona.koncert.grad }} | {{ zona.koncert.lokacija }}
+      </p>
+      <p style="text-align: left">Odabrana zona: {{ zona.naziv }}</p>
+      <p style="text-align: left">Broj karti: {{ rezervacija.brojKarata }}</p>
+      <p style="text-align: left">Ukupno: {{ rezervacija.ukupno }} din</p>
+      <div id="dodajKarte">
+        <mat-accordion>
+          <mat-expansion-panel
+            #myPanel
+            (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false"
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title> Dodaj karte </mat-panel-title>
+            </mat-expansion-panel-header>
+            <!-- broj karti i dugme dodaj-->
+            <div class="row justify-content-around">
+              <div class="col-6">
+                <div class="row">
+                  <label class="col-5">Broj karti:</label>
+                  <input
+                    type="number"
+                    name="brojKarata"
+                    [ngModel]="dodajBrojKarata"
+                    #box
+                    (keyup)="onKey(box.value)"
+                    class="form-control mb-5 col-6"
+                  />
+                </div>
+              </div>
+              <button
+                type="button"
+                class="btn form-control btn-sm btn-outline-dark col-4"
+                id="dugme"
+                [disabled]="poruka != 'ima'"
+                (click)="DodajKarteNaRezervaciju(); myPanel.close()"
+              >
+                Dodaj karte
+              </button>
+            </div>
+            <div class="row" *ngIf="poruka != 'nepoznato' && poruka != 'ima'">
+              <label
+                class="col-12"
+                style="font-style: italic; color: orangered; font-size: 1vw"
+                >{{ poruka }}</label
+              >
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+  </div>
+</div>

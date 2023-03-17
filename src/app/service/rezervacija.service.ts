@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ResponseRezervacijaKarte } from '../model/responseRezervacijaKarte';
+import { Rezervacija } from '../model/rezervacija.model';
+import { Zona } from '../model/zona.model';
+import { RequestRezervacijaZona } from '../model/RequestRezervacijaZona';
 @Injectable({
   providedIn: 'root',
 })
@@ -53,6 +56,21 @@ export class RezervacijaService {
     const requestOptions = { headers: headers };
     return this.http.delete(
       `http://localhost:8080/auth/rezervacija/${id}`,
+      requestOptions
+    );
+  }
+
+  updateReservation(rezervacijaZona: RequestRezervacijaZona, token: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+      ID: '002',
+      'Access-Control-Allow-Origin': '*',
+    });
+    const requestOptions = { headers: headers };
+    return this.http.put(
+      `http://localhost:8080/auth/rezervacija`,
+      rezervacijaZona,
       requestOptions
     );
   }

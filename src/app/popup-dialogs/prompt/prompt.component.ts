@@ -1,11 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { RezervacijaService } from '../service/rezervacija.service';
+import { RezervacijaService } from '../../service/rezervacija.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
   MojeRezervacijeComponent,
   PromptData,
-} from '../moje-rezervacije/moje-rezervacije.component';
-import { PromokodService } from '../service/promokod.service';
+} from '../../moje-rezervacije/moje-rezervacije.component';
+import { PromokodService } from '../../service/promokod.service';
 import { Router } from '@angular/router';
 
 @Component({

@@ -15,8 +15,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MojeRezervacijeComponent } from './moje-rezervacije/moje-rezervacije.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { DialogComponent } from './dialog/dialog.component';
-import { PromptComponent } from './prompt/prompt.component';
+import { DialogComponent } from './popup-dialogs/dialog/dialog.component';
+import { PromptComponent } from './popup-dialogs/prompt/prompt.component';
+import { IzmenaRezervacijeComponent } from './izmena-rezervacije/izmena-rezervacije.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,7 @@ import { PromptComponent } from './prompt/prompt.component';
     MojeRezervacijeComponent,
     DialogComponent,
     PromptComponent,
+    IzmenaRezervacijeComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +45,8 @@ import { PromptComponent } from './prompt/prompt.component';
     ReactiveFormsModule,
     MatInputModule,
     MatDialogModule,
+    MatExpansionModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

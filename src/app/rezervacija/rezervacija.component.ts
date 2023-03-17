@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { Koncert } from '../model/koncert.model';
 import { NgForm } from '@angular/forms';
 import { Zona } from '../model/zona.model';
@@ -12,10 +13,8 @@ import { Korisnik } from '../model/korisnik.model';
 import { KartaService } from '../service/karta.service';
 import { ZonaPK } from '../model/ZonaPK.model';
 import { PromokodService } from '../service/promokod.service';
-import { take } from 'rxjs/operators';
-import { isObservable, Observable } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DialogComponent } from '../dialog/dialog.component';
+import { DialogComponent } from '../popup-dialogs/dialog/dialog.component';
 
 @Component({
   selector: 'app-rezervacija',
@@ -65,7 +64,8 @@ export class RezervacijaComponent implements OnInit {
     private kartaService: KartaService,
     private promokodService: PromokodService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private location: Location
   ) {
     this.sub = this.activatedRoute.queryParams.subscribe((params) => {
       this.koncertId = +params['id'];
@@ -84,6 +84,7 @@ export class RezervacijaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.location.replaceState('/reservation');
     this.getKoncert();
     this.populateDropDownZonaForKoncert();
     this.validanPromokod = false;

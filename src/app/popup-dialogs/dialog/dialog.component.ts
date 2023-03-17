@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { DialogData } from '../rezervacija/rezervacija.component';
+import { DialogData } from '../../rezervacija/rezervacija.component';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
